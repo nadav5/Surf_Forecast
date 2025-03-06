@@ -1,0 +1,217 @@
+@startuml
+class com.example.surf_forcast.HourlyWeather {
+- List<String> time
+- List<Double> temperature_2m
+- List<Integer> weather_code
+- List<Double> wind_speed_10m
+- List<Integer> wind_direction_10m
+}
+
+interface com.example.surf_forcast.JsonAPI {
+}
+class com.example.surf_forcast.Favorite_RecyclerViewAdapter {
+~ Context context
+~ ArrayList<Beach> beaches
+}
+
+class com.example.surf_forcast.Favorite_RecyclerViewAdapter$MyViewHolder {
+~ TextView name
+~ ImageView deleteButton
+}
+
+class com.example.surf_forcast.Beach {
+- String name
+- double latitude
+- double longitude
+- double waveHeight
+- int rate
+- String key
+}
+
+class com.example.surf_forcast.RegActivity {
+~ EditText name
+~ Button create
+~ FirebaseDatabase firebaseDatabase
+~ FirebaseAuth firebaseAuth
+~ DatabaseReference myref
+~ ImageView profileImage
+~ Uri uri
+~ AlertDialog.Builder adb
+~ AlertDialog ad
+- {static} int MY_CAMERA_REQUEST_CODE
+- {static} int FROM_GALLERY
+- {static} int FROM_CAMERA
+~ ActivityResultLauncher activityResultLauncher
+~ int flag
+~ byte[] bytes
+~ String picName
+~ StorageReference mStorageRef
+~ boolean f
+}
+
+class com.example.surf_forcast.FindFragment {
+- {static} int LOCATION_PERMISSION_REQUEST_CODE
+- double latitude
+- double longitude
+- GoogleMap map
+- FusedLocationProviderClient fusedLocationClient
+}
+
+class com.example.surf_forcast.ForecastPlaceActivity {
+~ ArrayList<SurfForecast> surfForecast
+~ ArrayList<SurfForecast> windForecast
+~ ImageView saveBeach
+~ AlertDialog dialog
+~ Float latitude
+~ String day
+- {static} String URL
+- {static} float DEFAULT_LATITUDE
+- {static} float DEFAULT_LONGITUDE
+}
+
+class com.example.surf_forcast.Splash {
+}
+class com.example.surf_forcast.User {
+- String name
+- String Email
+- String pass
+- String profilePictureUrl
+}
+
+class com.example.surf_forcast.SF_recyclerview_adapter {
+- Context context
+- ArrayList<SurfForecast> surfForecasts
+- ArrayList<SurfForecast> windForecasts
+}
+
+class com.example.surf_forcast.SF_recyclerview_adapter$MyViewHolder {
+~ TextView day
+~ TextView textView_height6am
+~ TextView textView_period6am
+~ TextView textView_wind_amount6am
+~ ImageView textView_wind_icon6am
+~ TextView textView_heightNoon
+~ TextView textView_periodNoon
+~ TextView textView_wind_amountNoon
+~ ImageView textView_wind_iconNoon
+~ TextView textView_height6pm
+~ TextView textView_period6pm
+~ TextView textView_wind_amount6pm
+~ ImageView textView_wind_icon6pm
+~ View linearLayoutBackground6am
+~ View linearLayoutBackgroundNoon
+~ View linearLayoutBackground6pm
+~ TextView heightSwell6am
+}
+
+class com.example.surf_forcast.ProfileFragment {
+- TextView nameTextView
+- ImageView profileImageView
+}
+
+class com.example.surf_forcast.ForecastWeather {
+- float latitude
+- boolean error
+- String reason
+- HourlyWeather hourly
+}
+
+class com.example.surf_forcast.LogActivity {
+~ Button login
+~ TextView reg
+~ EditText editTextTextPassword
+~ FirebaseAuth Auth
+~ CheckBox ck
+~ SharedPreferences sp
+}
+
+class com.example.surf_forcast.MainActivity {
+}
+class com.example.surf_forcast.Daily {
+- List<Double> wave_height_max
+- List<Double> wave_period_max
+- List<Double> wind_wave_direction_dominant
+- List<String> time_hourly
+- List<Double> wave_height_hourly
+- List<Double> wave_period_hourly
+- List<Double> wind_wave_direction_hourly
+}
+
+class com.example.surf_forcast.Hourly {
+- List<String> time
+- List<Double> wave_height
+- List<Double> wave_period
+- List<Double> wind_wave_direction
+- List<Double> swell_wave_height
+}
+
+class com.example.surf_forcast.SurfForecast {
+- Double wave_height_max6am
+- Double wave_period_max6am
+- Double wave_height_maxNoon
+- Double wave_period_maxNoon
+- Double wave_height_max6pm
+- Double wave_period_max6pm
+- String time
+- String day
+- Integer wind_direction_10m6am
+- Integer wind_direction_10mNoon
+- Integer wind_direction_10m6pm
+- Double wind_speed_10m6am
+- Double wind_speed_10mNoon
+- Double wind_speed_10m6pm
+- Double swell_wave_height6am
+- Double swell_wave_heightNoon
+- Double swell_wave_height6pm
+}
+
+class com.example.surf_forcast.Forecast {
+- float latitude
+- boolean error
+- String reason
+- Daily daily
+- Hourly hourly
+}
+
+class com.example.surf_forcast.FavoriteFragment {
+- Double heightNow
+- int rate
+- ArrayList<Beach> favoriteBeach
+- SharedPreferences preferences
+- Favorite_RecyclerViewAdapter adapter
+}
+
+class com.example.surf_forcast.ExampleUnitTest {
+}
+class com.example.surf_forcast.ExampleInstrumentedTest {
+}
+class com.example.surf_forcast.HomeActivity {
+~ BottomNavigationView bottomNavigationView
+~ FavoriteFragment favoriteFragment
+~ FindFragment findFragment
+~ ProfileFragment profileFragment
+}
+
+
+
+com.example.surf_forcast.Adapter <|-- com.example.surf_forcast.Favorite_RecyclerViewAdapter
+com.example.surf_forcast.Favorite_RecyclerViewAdapter +.. com.example.surf_forcast.Favorite_RecyclerViewAdapter$MyViewHolder
+com.example.surf_forcast.ViewHolder <|-- com.example.surf_forcast.Favorite_RecyclerViewAdapter$MyViewHolder
+com.example.surf_forcast.OnClickListener <|.. com.example.surf_forcast.RegActivity
+androidx.appcompat.app.AppCompatActivity <|-- com.example.surf_forcast.RegActivity
+androidx.fragment.app.Fragment <|-- com.example.surf_forcast.FindFragment
+com.example.surf_forcast.OnClickListener <|.. com.example.surf_forcast.ForecastPlaceActivity
+androidx.appcompat.app.AppCompatActivity <|-- com.example.surf_forcast.ForecastPlaceActivity
+androidx.appcompat.app.AppCompatActivity <|-- com.example.surf_forcast.Splash
+java.io.Serializable <|.. com.example.surf_forcast.User
+com.example.surf_forcast.Adapter <|-- com.example.surf_forcast.SF_recyclerview_adapter
+com.example.surf_forcast.SF_recyclerview_adapter +.. com.example.surf_forcast.SF_recyclerview_adapter$MyViewHolder
+com.example.surf_forcast.ViewHolder <|-- com.example.surf_forcast.SF_recyclerview_adapter$MyViewHolder
+com.example.surf_forcast.OnClickListener <|.. com.example.surf_forcast.ProfileFragment
+androidx.fragment.app.Fragment <|-- com.example.surf_forcast.ProfileFragment
+com.example.surf_forcast.OnClickListener <|.. com.example.surf_forcast.LogActivity
+androidx.appcompat.app.AppCompatActivity <|-- com.example.surf_forcast.LogActivity
+androidx.appcompat.app.AppCompatActivity <|-- com.example.surf_forcast.MainActivity
+androidx.fragment.app.Fragment <|-- com.example.surf_forcast.FavoriteFragment
+androidx.appcompat.app.AppCompatActivity <|-- com.example.surf_forcast.HomeActivity
+@enduml
